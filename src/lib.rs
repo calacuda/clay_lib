@@ -19,3 +19,9 @@ pub enum Token {
     Form(Box<Vec<Token>>),
     EOF,
 }
+
+#[derive(Debug, Clone)]
+pub enum Nargs {
+    INF,
+    Num(usize),
+}
