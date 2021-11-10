@@ -16,7 +16,7 @@ pub enum Token {
     Number(String),
     Bool(bool),
     // Tick,
-    Form(Box<Vec<Token>>),
+    // Form(Box<Vec<Token>>),
     EOF,
 }
 
