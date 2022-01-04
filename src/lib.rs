@@ -30,6 +30,7 @@ pub enum Nargs {
     Num(usize),
 }
 
+/*
 pub enum LangLibrary {
     Compiled(
         HashMap<
@@ -306,3 +307,4 @@ pub fn evaluate(
 
     // return call_func(known_things, libs, &action, evaled_args);
 }
+*/
