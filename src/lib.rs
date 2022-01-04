@@ -30,7 +30,7 @@ pub enum Nargs {
     Num(usize),
 }
 
-enum LangLibrary {
+pub enum LangLibrary {
     Compiled(
         HashMap<
             String,
@@ -45,14 +45,14 @@ enum LangLibrary {
 }
 
 #[derive(Debug, PartialEq, Clone, Eq, Hash)]
-enum KnownThing {
+pub enum KnownThing {
     // LispFunc(parser::Node),
     LispFunc(Token),
     CompiledFunc((PathBuf, String)), // (library, function name)
     Var(Token),
 }
 
-fn def_let(
+pub fn def_let(
     known_things: &mut HashMap<String, KnownThing>,
     tmp_known_things: &mut HashMap<String, KnownThing>,
     libs: &mut HashMap<String, LangLibrary>,
@@ -98,7 +98,7 @@ fn def_let(
     return call_code(known_things, tmp_known_things, libs, code);
 }
 
-fn def(
+pub fn def(
     known_things: &mut HashMap<String, KnownThing>,
     tmp_known_things: &mut HashMap<String, KnownThing>,
     libs: &mut HashMap<String, LangLibrary>,
@@ -133,7 +133,7 @@ fn def(
     known_things.insert(name, thing);
 }
 
-fn call_code(
+pub fn call_code(
     known_things: &mut HashMap<String, KnownThing>,
     tmp_known_things: &mut HashMap<String, KnownThing>,
     libs: &mut HashMap<String, LangLibrary>,
@@ -148,7 +148,7 @@ fn call_code(
     return res;
 }
 
-fn call_lisp(
+pub fn call_lisp(
     known_things: &mut HashMap<String, KnownThing>,
     tmp_known_things: &mut HashMap<String, KnownThing>,
     libs: &mut HashMap<String, LangLibrary>,
@@ -188,7 +188,7 @@ fn call_lisp(
     call_code(known_things, tmp_known_things, libs, algorithm)
 }
 
-fn call_comp<'a>(lib_name: &PathBuf, func_name: &String, args: Vec<Token>) -> Token {
+pub fn call_comp<'a>(lib_name: &PathBuf, func_name: &String, args: Vec<Token>) -> Token {
     /*
      * calls a compiled rust/c/golang/whatever function from the
      * .so file stored in lib_name.
@@ -213,7 +213,7 @@ fn call_comp<'a>(lib_name: &PathBuf, func_name: &String, args: Vec<Token>) -> To
     // return result;
 }
 
-fn get_dual_hashmap(
+pub fn get_dual_hashmap(
     known_things: &mut HashMap<String, KnownThing>,
     tmp_known_things: &mut HashMap<String, KnownThing>,
     sym: &String,
@@ -231,7 +231,7 @@ fn get_dual_hashmap(
     .clone();
 }
 
-fn evaluate(
+pub fn evaluate(
     known_things: &mut HashMap<String, KnownThing>,
     tmp_known_things: &mut HashMap<String, KnownThing>,
     libs: &mut HashMap<String, LangLibrary>,
